@@ -18,13 +18,13 @@ from picard.util.filenaming import (
 
 
 def _move_or_rename(old_filename, new_filename, file_type):
-    filename = replace_extension(old_filename, file_type)
-    if not isfile(filename):
+    mod_filename = old_filename + file_type
+    if not isfile(mod_filename):
         return
-    new_filename = replace_extension(new_filename, file_type)
-    new_filename = get_available_filename(new_filename, filename)
-    log.debug('Moving ' + file_type + ' file %r => %r', filename, new_filename)
-    move_ensure_casing(filename, new_filename)
+    mod_new_filename = new_filename + file_type
+    mod_new_filename = get_available_filename(mod_new_filename, mod_filename)
+    log.debug('Moving ' + file_type + ' file %r => %r', mod_filename, mod_new_filename)
+    move_ensure_casing(mod_filename, mod_new_filename)
 
 
 def new_move(self, old_filename, new_filename, config):
